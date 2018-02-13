@@ -1,0 +1,19 @@
+{
+  "name": "verbling-i18n",
+  "main": "./lib/verbling-i18n",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [],
+  "activationCommands": {
+    "atom-workspace": "verbling-i18n:toggle"
+  },
+  "repository": "https://github.com/atom/verbling-i18n",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "season": "^6.0.2"
+  }
+}

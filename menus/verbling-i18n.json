@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle verbling-i18n",
+        "command": "verbling-i18n:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "verbling-i18n",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "verbling-i18n:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
