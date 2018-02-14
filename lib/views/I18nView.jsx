@@ -109,10 +109,7 @@ export default class I18nView extends React.Component {
       >
         <div className="flex flex-1">
           <div className="form-group flex-1">
-            <h3>{__t('common.normalText')}</h3>
-            <I18N __t="common.generatedHtml">
-              <h3>Magic input box:</h3>
-            </I18N>
+            <h3>Magic input box:</h3>
             <input
               type="text"
               className="native-key-bindings" // backspace won't work w/o this
