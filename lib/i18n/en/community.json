@@ -1,0 +1,9 @@
+{
+  "bla2": "foo2",
+  "mostPosts": "Most Posts",
+  "subKey": {
+    "leaderboards": {
+      "subKey": "Sub key example"
+    }
+  }
+}

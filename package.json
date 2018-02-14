@@ -13,7 +13,13 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
     "react": "^16.2.0",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.2.0",
     "season": "^6.0.2"
+  },
+  "devDependencies": {
+    "electron-devtools-installer": "^2.2.3"
   }
 }
