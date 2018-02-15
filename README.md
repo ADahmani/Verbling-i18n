@@ -11,10 +11,10 @@ PS: If you change the value of the text on the big right white box, the plugin w
 
 ## Format of the magic input box
 It supports keys:
-<b>fileName/key</b>
+<b>fileName.key</b>
 
 And sub keys:
-<b>fileName/tag.subtag.subtag.key</b>
+<b>fileName.tag.subtag.subtag.key</b>
 
 <b>/!\ fileName should be without extention.</b>
 Example: common
@@ -23,4 +23,4 @@ Example: common
 
 ## Trouble shooting
 
-In case of any problem refresh the editor with: <b>Ctrl + Option + CMD + M</b>
+In case of any problem refresh the editor with: <b>Ctrl + Option + CMD + L</b>

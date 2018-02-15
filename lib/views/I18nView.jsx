@@ -17,6 +17,10 @@ export default class I18nView extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.nameInput.focus();
+  }
+
   /**
    * Toggle the selected file and highlight it
    * @param  {String} fileName File name
@@ -30,16 +34,26 @@ export default class I18nView extends React.Component {
   };
 
   /**
+   * Checks if key pressed is Enter and execute
+   * @param  {Event} e event
+   */
+  onKeyPress = e => {
+    var keycode = e.keyCode ? e.keyCode : e.which;
+    if (keycode == '13') {
+      this.execute();
+    }
+  };
+
+  /**
    * Magic box input handeler
    * @param  {Object} e on change text event
    */
   onInputChange = e => {
     var raw = e.target.value;
     var copyInput = (' ' + raw).slice(1);
-    const values = copyInput.split('/');
-    const fileName = values[0];
-    const objectKV = values[1];
-
+    var objectKV = copyInput.split('.');
+    const fileName = objectKV.shift();
+    objectKV = objectKV.join('.');
     this.setState({
       activeItemName: fileName,
       raw,
@@ -55,11 +69,12 @@ export default class I18nView extends React.Component {
   onSelectFile = fileName => {
     this.setState(
       {
-        raw: fileName.split('.').shift(),
+        raw: fileName.split('.').shift() + '.',
         activeItemName: fileName.split('.').shift()
       },
       this.toggleActiveItem(`${fileName}.json`)
     );
+    this.nameInput.focus();
   };
 
   /**
@@ -112,9 +127,14 @@ export default class I18nView extends React.Component {
             <h3>Magic input box:</h3>
             <input
               type="text"
+              ref={input => {
+                this.nameInput = input;
+              }}
+              autofocus
               className="native-key-bindings" // backspace won't work w/o this
               style={{width: '70%'}}
               value={this.state.raw}
+              onKeyPress={this.onKeyPress}
               onChange={this.onInputChange}
             />
             <button

@@ -15,7 +15,12 @@ export default class Main extends React.Component {
         >
           🌍 Verbling I18n Toolkit 🎉
         </h1>
-        <button onClick={() => this.props.close()} className="btn btn-error" style={{float: 'right'}}>
+        <button
+          tabindex="-1"
+          onClick={() => this.props.close()}
+          className="btn btn-error"
+          style={{float: 'right'}}
+        >
           <div
             style={{
               marginLeft: 3,
