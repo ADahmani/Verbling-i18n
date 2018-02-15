@@ -1,7 +1,7 @@
 {
   "name": "verbling-i18n",
   "main": "./lib/verbling-i18n",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "Atom plugin that converts strings & html texts into I18n objects compatible with Verbling's I18n files",
   "keywords": [],
   "activationCommands": {
