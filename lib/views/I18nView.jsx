@@ -10,9 +10,10 @@ export default class I18nView extends React.Component {
     this.state = {
       filenames: props.filenames,
       selectedText: props.selectedText,
-      fileName: props.lastFileName + '.json',
+      activeItemName: '',
+      fileName: props.lastFileName && (props.lastFileName + '.json'),
       subKeys: '',
-      raw: props.lastFileName + '.',
+      raw: props.lastFileName && (props.lastFileName + '.'),
       activeItem: {}
     };
   }
@@ -57,7 +58,8 @@ export default class I18nView extends React.Component {
     this.setState({
       activeItemName: fileName,
       raw,
-      objectKV
+      objectKV,
+      isValid: fileName ? this.props.filenames.includes(fileName + '.json') : false
     });
     this.toggleActiveItem(`${fileName}.json`);
   };
@@ -70,7 +72,8 @@ export default class I18nView extends React.Component {
     this.setState(
       {
         raw: fileName.split('.').shift() + '.',
-        activeItemName: fileName.split('.').shift()
+        activeItemName: fileName.split('.').shift(),
+        isValid: true
       },
       this.toggleActiveItem(`${fileName}.json`)
     );
@@ -125,6 +128,18 @@ export default class I18nView extends React.Component {
         <div className="flex flex-1">
           <div className="form-group flex-1">
             <h3>Magic input box:</h3>
+            {!this.state.isValid &&
+              this.state.activeItemName !== '' &&
+              <div
+                style={{
+                  color: 'orange',
+                  padding: 10,
+                  position: 'absolute',
+                  bottom: 0,
+                  fontSize: 13,
+                  left: 40
+                }}
+              >{`⚠️ File "${this.state.activeItemName}.json" will be created!`}</div>}
             <input
               type="text"
               ref={input => {
