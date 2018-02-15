@@ -10,9 +10,9 @@ export default class I18nView extends React.Component {
     this.state = {
       filenames: props.filenames,
       selectedText: props.selectedText,
-      fileName: '',
+      fileName: props.lastFileName + '.json',
       subKeys: '',
-      raw: '',
+      raw: props.lastFileName + '.',
       activeItem: {}
     };
   }
