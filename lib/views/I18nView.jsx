@@ -11,9 +11,9 @@ export default class I18nView extends React.Component {
       filenames: props.filenames,
       selectedText: props.selectedText,
       activeItemName: '',
-      fileName: props.lastFileName && (props.lastFileName + '.json'),
+      fileName: props.lastFileName && props.lastFileName + '.json',
       subKeys: '',
-      raw: props.lastFileName && (props.lastFileName + '.'),
+      raw: props.lastFileName && props.lastFileName + '.',
       activeItem: {}
     };
   }
@@ -59,7 +59,9 @@ export default class I18nView extends React.Component {
       activeItemName: fileName,
       raw,
       objectKV,
-      isValid: fileName ? this.props.filenames.includes(fileName + '.json') : false
+      isValid: fileName
+        ? this.props.filenames.includes(fileName + '.json')
+        : false
     });
     this.toggleActiveItem(`${fileName}.json`);
   };
@@ -81,15 +83,20 @@ export default class I18nView extends React.Component {
   };
 
   /**
+   * on generate handeler
+   * @param  {Object} e change value event
+   */
+  onGenerate = e => {
+    this.props.onClickGenerateKey(this.state.selectedText);
+  };
+
+  /**
    * Value box input handeler
    * @param  {Object} e change value event
    */
-  onValueChange = e => {
-    const selectedText = e.target.value;
-    this.setState({
-      selectedText
-    });
-    this.props.onChangeText(selectedText);
+  onChangeText = e => {
+    var selectedText = e.target.value;
+    this.setState({selectedText});
   };
 
   /**
@@ -129,17 +136,20 @@ export default class I18nView extends React.Component {
           <div className="form-group flex-1">
             <h3>Magic input box:</h3>
             {!this.state.isValid &&
-              this.state.activeItemName !== '' &&
-              <div
-                style={{
-                  color: 'orange',
-                  padding: 10,
-                  position: 'absolute',
-                  bottom: 0,
-                  fontSize: 13,
-                  left: 40
-                }}
-              >{`⚠️ File "${this.state.activeItemName}.json" will be created!`}</div>}
+              this.state.activeItemName !== '' && (
+                <div
+                  style={{
+                    color: 'orange',
+                    padding: 10,
+                    position: 'absolute',
+                    bottom: 0,
+                    fontSize: 13,
+                    left: 40
+                  }}
+                >{`⚠️ File "${
+                  this.state.activeItemName
+                }.json" will be created!`}</div>
+              )}
             <input
               type="text"
               ref={input => {
@@ -163,29 +173,30 @@ export default class I18nView extends React.Component {
         </div>
         <div className="flex flex-1">
           <div className="flex-1">
-            <h3>
-              Selected file
-            </h3>
+            <h3>Selected file</h3>
             <div style={{padding: '0 10px'}}>
               <div className="icon icon-file-directory">en</div>
               <Scrollbars style={{height: 100}}>
-                <ul className="list-group">
-                  {files}
-                </ul>
+                <ul className="list-group">{files}</ul>
               </Scrollbars>
             </div>
           </div>
           <div class="form-group flex-1">
-            <h3>
-              Selected value
-            </h3>
+            <h3>Selected value</h3>
             <textarea
-              onChange={this.onValueChange}
+              onChange={this.onChangeText}
               className="form-control native-key-bindings"
               rows="5"
             >
               {this.state.selectedText}
             </textarea>
+            <button
+              style={{width: '100%'}}
+              className="btn btn-default"
+              onClick={this.onGenerate}
+            >
+              Generate Translation Markup
+            </button>
           </div>
         </div>
       </div>
